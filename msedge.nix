@@ -60,7 +60,6 @@ let
 
 
   msaldk = pkgs.callPackage /etc/nixos/features/intune/msaldk.nix {};
-  #msft-identity-broker = pkgs.callPackage /etc/nixos/features/intune/msft-identity-broker.nix {};
   libsdbus = pkgs.callPackage /etc/nixos/features/intune/libsdbus.nix {};
   msft-identity-broker = pkgs.callPackage /etc/nixos/features/intune/msft-identity-broker.nix {};
   intune = pkgs.callPackage /etc/nixos/features/intune/intune.nix {};
@@ -158,20 +157,8 @@ in stdenv.mkDerivation {
     --prefix LD_LIBRARY_PATH : ${libsdbus}/lib \
     ${programFlags}
 
-
-    #     --prefix LD_LIBRARY_PATH : /run/current-system/sw/lib \
-    #--prefix LD_LIBRARY_PATH : $out/opt/microsoft/msedge-dev/ \
-    #--prefix PATH : ${intune}/bin \
-    # --prefix PATH : ${msft-identity-broker}/opt/msft/identitybroker/bin \
-      #--add-flags "--enable-features=msEdgeSyncESR,msEnableAADSignInOnLinux,VaapiVideoDecoder,VaapiVideoEncoder,WebRTCPipeWireCapturer --disable-gpu-driver-bug-workarounds --enable-accelerated-video-decode --enable-accelerated-video-encode --use-gl=desktop"  #--no-zygote --no-sandbox"
-      # WebRTCPipeWireCapturer
-      # for wayland, do this
-      #--add-flags "--enable-features=msEdgeSyncESR,msEnableAADSignInOnLinux,UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland --disable-gpu-driver-bug-workarounds --use-gl=egl-gles2 --no-zygote --no-sandbox"
-
     rm -rf $out/share/doc
     rm -rf $out/opt/microsoft/msedge-dev/cron
-    #rm -vr $out/opt/microsoft/msedge-dev/xdg-mime
-    #rm -vr $out/opt/microsoft/msedge-dev/xdg-settings
 
     substituteInPlace $out/share/applications/microsoft-edge-dev.desktop \
       --replace /usr/bin/microsoft-edge-dev $out/bin/microsoft-edge-dev \

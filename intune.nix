@@ -38,23 +38,8 @@ let
     libsdbus
     libpwquality
     xdg-utils
-    #pipewire
-    #libglvnd
-    #alsa-utils
-    #pulseaudioFull # You need this if you want sound!
     xdg-desktop-portal-gtk # wait, was it this?  Is this necessary for the broker?
-    #vulkan-tools
-    #vulkan-headers
-    #vulkan-loader
-    #pkgs.linuxKernel.packages.linux_xanmod.nvidia_x11
-    #libvdpau
-    #libvdpau-va-gl
-    #vaapiVdpau
-    #libva-utils
-    #common-password
     zsh
-    #wayland
-    #mesa
   ];
 
   common-password = pkgs.stdenv.mkDerivation {
@@ -74,10 +59,6 @@ let
   };
 
   env_vars = ''
-    # export EXTRA_CCFLAGS="-I/usr/include"
-    # Uncomment this to use a different path for Julia.
-    # Note that multiple Julia versions can use the same depot path without problems.
-    # export JULIA_DEPOT_PATH="~/.julia-1.6:$JULIA_DEPOT_PATH"
     export JAVA_HOME=${pkgs.jdk11.home}
     export PATH=${pkgs.coreutils}/bin:${pkgs.which}/bin:$PATH
     export GSETTINGS_SCHEMA_DIR=${pkgs.glib.getSchemaPath pkgs.gtk3}
@@ -87,63 +68,49 @@ let
   msft-fhs = pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "msft-identity-device-broker"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "/opt/msft/identitybroker/bin/msft-identity-device-broker";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
 
   msft-user-fhs = pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "msft-identity-broker"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "/opt/msft/identitybroker/bin/msft-identity-broker";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
 
   intune-agent-fhs = pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "intune-agent"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "/usr/bin/intune-agent";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
 
   intune-agent-debug-fhs = pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "intune-agent-debug"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "zsh";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
 
   intune-portal-fhs = pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "intune-portal"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "/usr/bin/intune-portal";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
 
   intune-portal-debug-fhs = pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "intune-portal-debug"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "zsh";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
 
   msedge-fhs= pkgs.buildFHSUserEnv {
     targetPkgs = targetPkgs;
     name = "microsoft-edge-dev"; # Name used to start this UserEnv
-    #multiPkgs = multiPkgs;
     runScript = "microsoft-edge-dev";
-    #extraOutputsToInstall = extraOutputsToInstall;
     profile = env_vars;
   };
   edgeDesktopItem = pkgs.makeDesktopItem {
@@ -151,7 +118,6 @@ let
     desktopName = "Microsoft Edge";
     exec = "${msedge-fhs}/microsoft-edge-dev";
     terminal = "false";
-    #icon = "${msedge-fhs}/opt/microsoft/msedge-dev/product_logo_48_dev.png";
     icon = "microsoft-edge-dev";
   };
   intunePortalDesktopItem = pkgs.makeDesktopItem {
@@ -159,7 +125,6 @@ let
     desktopName = "Company Portal";
     exec = "${intune-portal-fhs}/bin/intune-portal";
     terminal = "false";
-    #icon = "${msedge-fhs}/opt/microsoft/msedge-dev/product_logo_48_dev.png";
     icon = "intune";
   };
 
@@ -168,7 +133,6 @@ let
     desktopName = "Intune Agent";
     exec = "${intune-agent-fhs}/bin/intune-agent";
     terminal = "false";
-    #icon = "${msedge-fhs}/opt/microsoft/msedge-dev/product_logo_48_dev.png";
     icon = "intune";
   };
 
@@ -271,13 +235,8 @@ in
     msedge
     intunePortalDesktopItem
     intuneAgentDesktopItem
-    #intune
     libsdbus # NEEDED for edge?
     msaldk # NEEDED for edge?
-    #edgeDesktopItem
-    #intune
-    #msaldk
-    #libsdbus
     libpwquality
     libuuid
     libsecret
@@ -287,7 +246,6 @@ in
     msft-user-fhs
     msft-identity-broker # how long has this been...? # I think this is where it gets the dbus conf file from.
     intune-agent-fhs
-    #intune-agent-debug-fhs
     intune-portal-fhs
     intune-portal-debug-fhs
     jdk11
@@ -304,15 +262,11 @@ in
     vulkan-tools
     vulkan-headers
     vulkan-loader
-    #pkgs.linuxKernel.packages.linux_xanmod.nvidia_x11
     libvdpau
     libvdpau-va-gl
     vaapiVdpau
     libva-utils
     common-password
     getconf
-    #zsh
-    #wayland
-    #mesa
   ];
 }
