@@ -58,9 +58,6 @@ let
       sha256 = "153faqxyw5f5b6cqnvd71dl7941znkzci8dwbcgaxway0b6882jq";
   };
 
-  liboneauth = builtins.fetchurl {
-      url = file:///etc/nixos/features/intune/liboneauth.so;
-  };
 
   msaldk = pkgs.callPackage /etc/nixos/features/intune/msaldk.nix {};
   #msft-identity-broker = pkgs.callPackage /etc/nixos/features/intune/msft-identity-broker.nix {};
@@ -198,8 +195,6 @@ in stdenv.mkDerivation {
       --replace "''${XDG_DATA_DIRS:-/usr/local/share:/usr/share}" "''${XDG_DATA_DIRS:-/run/current-system/sw/share}" \
       --replace "''${XDG_CONFIG_DIRS:-/etc/xdg}" "''${XDG_CONFIG_DIRS:-/run/current-system/sw/etc/xdg}"
 
-
-    #cp -vr ${liboneauth} $out/opt/microsoft/msedge-dev/liboneauth.so
   '';
 
   meta = with lib; {
