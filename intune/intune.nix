@@ -21,16 +21,11 @@ let
   # https://gitlab.com/zanc/overlays/-/blob/master/edge/browser.nix
 
   # whole fucking file nicked from https://unix.stackexchange.com/questions/520675/making-a-simple-deb-package-nixos-compatible-mathematicas-wolframscript
-  # Please keep the version x.y.0.z and do not update to x.y.76.z because the
-  # source of the latter disappears much faster.
   version = "0.2202.1";
 
   src = builtins.fetchurl {
-      #url = http://packages.microsoft.com/ubuntu/20.04/prod/pool/main/i/intune-portal/intune-portal_0.2201.1~mvr5_amd64.deb;
-      #sha256 = "1s4q612awf6g6dajpm2qh7dfgpcaly04n3z69dyqqx86gb61qba9";
-      #name = "intune-portal_0.2201.1.mvr5_amd64.deb";
-      url = https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/i/intune-portal/intune-portal_1.2202.1_amd64.deb;
-      sha256 = "0hbni2mzjaj6w5j3kayz9m9qhbdjy1g6rlr4xqpwldllfa886zza";
+    url = https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/i/intune-portal/intune-portal_1.2202.1_amd64.deb;
+    sha256 = "0hbni2mzjaj6w5j3kayz9m9qhbdjy1g6rlr4xqpwldllfa886zza";
   };
 
     msedge = pkgs.callPackage /etc/nixos/features/msedge.nix {};
@@ -86,7 +81,6 @@ in stdenv.mkDerivation {
     mkdir -p $out
     ls $TMP
     cp -av $TMP/usr/* $TMP/lib $out/
-    #cp -av $TMP/usr/* $out/
     
   '';
 
