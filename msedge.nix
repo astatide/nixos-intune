@@ -46,14 +46,6 @@ let
   version = "100.0.1163";
 
   src = builtins.fetchurl {
-      #url = https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_99.0.1131.3-1_amd64.deb;
-      #url = https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_99.0.1141.0-1_amd64.deb;
-      #url = https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_99.0.1150.2-1_amd64.deb;
-      #sha256 = "sha256:1rl9krdl9i5l46n2b1j6m3m7jd9df7b7rnb2lp846c71rx4b16x8";
-      #url = https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_99.0.1150.7-1_amd64.deb;
-      #sha256 = "1aqbswxb1d2q0gyzrvr50vj37kymligyd7bjb5cpbia4kcf8isb6";
-      #url = file:///home/astatide/Downloads/microsoft-edge-dev_99.0.1151.0-1_amd64.deb;
-      #sha256 = "sha256:0n3vf5nvb4rmrh6212g70vsl45pqf98b14c0y3zpyk4w0dajcypx";
       url = https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_100.0.1163.1-1_amd64.deb;
       sha256 = "153faqxyw5f5b6cqnvd71dl7941znkzci8dwbcgaxway0b6882jq";
   };
@@ -118,10 +110,6 @@ in stdenv.mkDerivation {
   ];
 
   unpackPhase = "true";
-  #dontPatch = true;
-  #dontConfigure = true;
-  #dontPatchELF = true;
-
 
   # fix nicked from https://github.com/afrepues/nixpkgs/commit/9662d78b943ac2efbdfceb6f69f7216e282aad8f
   buildPhase = ''
