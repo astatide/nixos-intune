@@ -106,20 +106,7 @@ let
     runScript = "zsh";
     profile = env_vars;
   };
-
-  msedge-fhs= pkgs.buildFHSUserEnv {
-    targetPkgs = targetPkgs;
-    name = "microsoft-edge-dev"; # Name used to start this UserEnv
-    runScript = "microsoft-edge-dev";
-    profile = env_vars;
-  };
-  edgeDesktopItem = pkgs.makeDesktopItem {
-    name = "edge-desktop-item";
-    desktopName = "Microsoft Edge";
-    exec = "${msedge-fhs}/microsoft-edge-dev";
-    terminal = "false";
-    icon = "microsoft-edge-dev";
-  };
+  
   intunePortalDesktopItem = pkgs.makeDesktopItem {
     name = "company-portal";
     desktopName = "Company Portal";
